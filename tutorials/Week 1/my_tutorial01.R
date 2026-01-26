@@ -124,11 +124,11 @@ summary(regression)
 # plots window to create a pdf of the plot below. Save it in the same folder as your 
 # latex template.
 
-pdf("graph1")
+pdf("graph2.pdf")
 data %>%
   ggplot(aes(`Tax revenue (% of GDP)`, 
              `GDP per capita (current US$)`, 
-             alpha = `Ease of doing business rank (1=most business-friendly regulations)`)) +
+             )) +
   geom_point() +
   geom_smooth(method = "lm")
 dev.off()
@@ -137,6 +137,6 @@ dev.off()
 # We'll use stargazer to create the latex code for our regression table. Clear your 
 # console, then run the code below.
 
-stargazer()
+stargazer(regression, type = "latex")
 
 # Now all we need is to update the latex template and upload the pdf to github!
