@@ -166,7 +166,7 @@
 	
 	$H_{0}$: $\beta_{countries}$ = $\beta_{sanctions}$ = 0, $H_{a}$ : At least one $\beta$ $\neq$ 0
 	
-	\noindent The additive model that was run above can be tested against the null model to determine whether or not the variables, and specifically their different levels, are significant in predicting the likelihood of an individual supporting a policy. A likelihood ratio test will be utlilized to test the two models against one another.
+	\noindent The additive model that was run above can be tested against the null model to determine whether or not the variables, and specifically their different levels, are significant in predicting the likelihood of an individual supporting a policy. A likelihood ratio test will be utlilized to test the log-likelihoods of the two models against one another.
 	
 	\lstinputlisting[language=R, firstline=67, lastline=74]{PS02_RL.R}
 	
@@ -181,13 +181,11 @@
 		---
 		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 	\end{verbatim}
+
+	\noindent In \autoref{tab:Table1}, it can be seen that the coefficients for the numbers of participating countries, as well the possible sanctions are significant. This means that they each have a significant impact on predicting the likelihood of an individual supporting a policy. This finding can be further reinforced by the results from the likelihood ratio test between the null model, where no coefficients are present, and the additive model, where all coefficients are present. The p-value for this test was less than 2.2e-16, indicating that the null hypothesis that the number of participating countries and amount of sanctions for missing emission reduction targets are not significant can be rejected, meaning at least one of these variables is signifiant in predicting the likelihood of support. Again, this is also seen in the regression output table for the additive model, as all of the coefficients are noted as significant in their predictive power and should subsequently be included in the model. 
+	\vspace{1cm}
 	
-	\noindent In \autoref{tab:Table1}, it can be seen that the coefficient for the number of participating countries, 0.458, is significant in predicting whether or not an individual agrees with a given policy. It can also be noted that the \autoref{tab:Table1} indicates that the coefficients for the impact of sanctions also have significant linear predictive power in determining whether or not an individual agrees with a certain policy. At this point in analysis, it can be determined that the null hypothesis that all of these coefficients are equal to zero can be rejected, and that all of them bar the quadratic relationship for the numeber of participating countries, are significant in predicting the support of a policy and should be included in the regression model.
-	
-	\noindent In \autoref{tab:Table1}, it can be seen that the coefficients for 
-	
-	
-\newpage
+
 \item
 If any of the explanatory variables are statistically significant in this model, then:
 \begin{enumerate}
@@ -195,34 +193,45 @@ If any of the explanatory variables are statistically significant in this model,
 	For the policy in which nearly all countries participate [160 of 192], how does increasing sanctions from 5\% to 15\% change the odds that an individual will support the policy? (Interpretation of a coefficient)
 	\vspace{.25cm}
 		
-	\noindent As an additive model has been fitted, the number of participating countries does not have an impact on the change in odds when increasing sanctions from 5\% to 15\%. The sanctions variable is in reference to the "None" level, so the difference between the coefficients for 5\% and 15\% sanctions must be mathematically compared against one another.
+	\noindent As an additive model has been fitted, the number of participating countries does not have an impact on the change in odds when increasing sanctions from 5\% to 15\%. Looking solely at the sanctions variable, it is in reference to the "None" level, which is the baseline, so the difference between the coefficients for 5\% and 15\% sanctions must be mathematically compared against one another.
 		
-	\lstinputlisting[language=R, firstline=85, lastline=86]{PS02_RL.R}
+	\lstinputlisting[language=R, firstline=80, lastline=81]{PS02_RL.R}
 
 	\begin{verbatim}
-		 sanctions15% 
 		 -0.3251028
 	\end{verbatim}
 			
-	\noindent This indicates that the in accordance with our additive model, holding all other variables constant, when the sanctions are increased from 5\% to 15\%, the log odds that an individual will support the policy decrease by 0.325. 
+	\noindent This indicates that in accordance with our additive model, when holding all other variables constant, when the sanctions are increased from 5\% to 15\%, the log odds that an individual will support the policy decrease by 0.325. The odds ratio can also be computed for this, using the following formula:
+	
+	\[Odds Ratio = e^{\beta_{j}}\]
+	 
+	\noindent In the case of our $\beta_{j}$, the log-odds difference between $\beta_{sanctions5}$ and $\beta_{sanctions15}$ of -0.325 will be utilized.
+	
+	\lstinputlisting[language=R, firstline=84, lastline=85]{PS02_RL.R}
+	
+	\begin{verbatim}
+		   0.7224531 
+	\end{verbatim}
+	
+	\noindent Using the odds ratio, we can interpret the odds that an individual will support a policy when sanctions are increased from 5\% to 15\% as follows: the log-odds that an individual will support a policy decrease by 72.25\% when the sanctions are increased from 5\% to 15\%.
 	\vspace{.25cm}
 		
 	\item
 	For the policy in which very few countries participate [20 of 192], how does increasing sanctions from 5\% to 15\% change the odds that an individual will support the policy? (Interpretation of a coefficient)
 	\vspace{.25cm}
 			
-	\noindent As this is an additive model, the number of participating countries does not have an impact on the change in odds when increasing sanctions from 5\% to 15\%. To interpret the change in odds for increasing the sanctions, it will be the same at all levels of country participation and is therefore the same as in question 2(a). When sanctions are increased from 5\% to 15\%, and all other variables are held constant, the log odds that an individual will support the policy decrease by 0.325. 
+	\noindent As this is an additive model, the number of participating countries does not have an impact on the change in odds when increasing sanctions from 5\% to 15\%. To interpret the change in odds for increasing the sanctions, it will be the same at all levels of country participation and is therefore the same as in question 2(a). When sanctions are increased from 5\% to 15\%, and all other variables are held constant, the log-odds that an individual will support the policy decrease by 0.325, or 72.25\%. 
 	\vspace{.25cm}
 			
 	\item
 	What is the estimated probability that an individual will support a policy if there are 80 of 192 countries participating with no sanctions? 
 	\vspace{.25cm}
 			
-	\noindent The estimated probability that an individual will support a policy if there are 80 out of 192 countries participating with no sanctions can be determined by solving for the log odds and placing this into a formula to determine the probability that y = 1. The formula for this is as follows:
+	\noindent The estimated probability that an individual will support a policy if there are 80 out of 192 countries participating with no sanctions can be determined by solving for the log-odds and placing this into a formula to determine the probability that y = 1. The formula for this is as follows:
 	
 	\[\pi_{i} = P(Y_{i} = 1| X_{i}) = \frac{exp(\beta_{0} + \beta_{1}X_{1i} + ... \beta_{k}X_{ki})}{1 + exp(\beta_{0} + \beta_{1}X_{1i} + ... \beta_{k}X_{ki})}\]
 	
-	\noindent The coefficients for $\beta_{0}$ and $\beta_{1}$ can be input and utilized to solve for $\pi_{i}$, which is the probability that $Y_{i} = 1$ when $\beta_{1}$ represents the effect on the log odds that an individual will support a policy if there are 80 of 192 countries participating.
+	\noindent The coefficients for $\beta_{0}$ and $\beta_{1}$ can be input and utilized to solve for $\pi_{i}$, which is the probability that $Y_{i} = 1$ when $\beta_{1}$ represents the effect on the log-odds that an individual will support a policy if there are 80 of 192 countries participating.
 		
 	\lstinputlisting[language=R, firstline=88, lastline=93]{PS02_RL.R}
 	
@@ -256,6 +265,8 @@ If any of the explanatory variables are statistically significant in this model,
 		1      8494      11568                     
 		2      8488      11562  6   6.2928   0.3912
 	\end{verbatim}
+		
+		\noindent From the analysis of deviance table, and specifically the p-value of 0.3912, it can be determined that including an interaction is not appropriate for this data. The p-value is larger than 0.05, indicating that the additive model is sufficient in its explanation of the likelihood that someone supports the policy. 
 		
 	\end{itemize}
 	\end{enumerate}

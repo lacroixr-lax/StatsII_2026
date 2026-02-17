@@ -78,7 +78,12 @@ anova(null_model, add_model, test = "LRT")
 #####################
 
 # 2a: Determining the log-odds difference between 5% and 15% sanctions.
-coef(add_model2)["sanctions15%"] - coef(add_model2)["sanctions5%"]
+diff_5_15 <- coef(add_model2)["sanctions15%"] - coef(add_model2)["sanctions5%"]
+diff_5_15
+
+# Determining odds ratio between 5% and 15% sanctions
+odds_ratio_5_15 <- exp(diff_5_15)
+odds_ratio_5_15
 
 # 2c: Estimated probability an individual will support the policy if there are 
 # 80 out of 192 countries participating. 
@@ -99,4 +104,4 @@ int_model <- glm(data = climateSupport,
 summary(int_model)
 
 # Perform test on additive vs interaction model
-anova(add_model2, int_model, test = "LRT")
+anova(add_model, int_model, test = "LRT")
