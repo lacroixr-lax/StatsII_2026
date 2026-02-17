@@ -110,7 +110,13 @@
 
 	\end{enumerate}
 	
-	\lstinputlisting[language=R, firstline=61, lastline=70]{PS02_RL.R}
+\noindent\textbf{My Answer:}
+
+	\textbf{Fit an additive model and provide summary output (\autoref{tab:Table1}).}
+
+	I changed the variables from ordered to unordered factors. For the countries variable, this made "20 of 192" the baseline for number of participating countries, while "None" was the baseline for the sanctions for missing emission reduction targets variable. 
+	
+	\lstinputlisting[language=R, firstline=47, lastline=56]{PS02_RL.R}
 	
 \begin{table}[!htbp] \centering 
 	\caption{Table of Coefficients} 
@@ -151,12 +157,35 @@
 	\end{tabular} 
 		\label{tab:Table1}
 	\end{table} 
+
+\newpage
+
+\noindent\textbf{Global null hypothesis, p-value, results discussion, and conclusion.}
+
+	\noindent The global null hypothesis states that neither of the variables, number of participating countries and sanctions for missing emission reduction targets, are significant in predicting whether or not an individual agrees with the given policy. This means that at no levels of either variable would they be significant in predicting the likelihood a person supports a policy. The alternative hypothesis states that at least one of the variables listed, at any level, is significant in predicting the likelihood of whether or not an individual agrees with the given policy. 
 	
-	\noindent The global null hypothesis states that neither of the variables, number of participating countries and sanctions for missing emission reduction targets, are significant in predicting whether or not an individual agrees with the given policy. The alternative hypothesis states that at least one of the variables listed is significant in predicting whether or not an individual agrees with the given policy. 
+	$H_{0}$: $\beta_{countries}$ = $\beta_{sanctions}$ = 0, $H_{a}$ : At least one $\beta$ $\neq$ 0
 	
-	$H_{0}$: $\beta_{1}$ = $\beta_{2}$ = 0, $H_{a}$ : At least one $\beta$ $\neq$ 0
+	\noindent The additive model that was run above can be tested against the null model to determine whether or not the variables, and specifically their different levels, are significant in predicting the likelihood of an individual supporting a policy. A likelihood ratio test will be utlilized to test the two models against one another.
+	
+	\lstinputlisting[language=R, firstline=67, lastline=74]{PS02_RL.R}
+	
+	\begin{verbatim}
+		Analysis of Deviance Table
+		
+		Model 1: choice ~ 1
+		Model 2: choice ~ countries + sanctions
+		Resid. Df Resid. Dev Df Deviance  Pr(>Chi)    
+		1      8499      11783                          
+		2      8494      11568  5   215.15 < 2.2e-16 ***
+		---
+		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+	\end{verbatim}
 	
 	\noindent In \autoref{tab:Table1}, it can be seen that the coefficient for the number of participating countries, 0.458, is significant in predicting whether or not an individual agrees with a given policy. It can also be noted that the \autoref{tab:Table1} indicates that the coefficients for the impact of sanctions also have significant linear predictive power in determining whether or not an individual agrees with a certain policy. At this point in analysis, it can be determined that the null hypothesis that all of these coefficients are equal to zero can be rejected, and that all of them bar the quadratic relationship for the numeber of participating countries, are significant in predicting the support of a policy and should be included in the regression model.
+	
+	\noindent In \autoref{tab:Table1}, it can be seen that the coefficients for 
+	
 	
 \newpage
 \item

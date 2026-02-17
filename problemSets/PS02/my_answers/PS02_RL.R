@@ -36,47 +36,42 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # Problem 1
 #####################
 
-# load data
+# Load data
 load(url("https://github.com/ASDS-TCD/StatsII_2026/blob/main/datasets/climateSupport.RData?raw=true"))
 
-# visualize data
+# Visualize data
 head(climateSupport)
 
 str(climateSupport)
 
-# run additive model
-add_model <- glm(data = climateSupport,
-                 choice ~ countries + sanctions,
-                 family = binomial)
-summary(add_model)
-
-# create table
-stargazer(add_model,
-          type = "latex",
-          title = "Table of Coefficients",
-          column.labels = "Additive Model",
-          covariate.labels = c("Countries", "Sanctions"),
-          dep.var.labels = "Choice")
-
-# Changing the variables to not be ordered factors and now just regular factors
+# Changing the variables to not be ordered factors and instead unordered factors
 climateSupport$countries <- factor(climateSupport$countries, ordered = FALSE)
 climateSupport$sanctions <- factor(climateSupport$sanctions, ordered = FALSE)
 
 # Run additive model
-add_model2 <- glm(data = climateSupport,
+add_model <- glm(data = climateSupport,
                   choice ~ countries + sanctions,
                   family = binomial)
 
-summary(add_model2)
+summary(add_model)
 
 # Create table
-stargazer(add_model2,
+stargazer(add_model,
           type = "latex",
           title = "Table of Coefficients",
           column.labels = "Additive Model",
           covariate.labels = c("Countries (80 of 192)", "Countries (160 of 192)", 
           "Sanctions (5%)", "Sanctions (15%)", "Sanctions (20%)"),
           dep.var.labels = "Choice")
+
+# Run LRT on the null vs additive model
+# Run Null model
+null_model <- glm(data = climateSupport,
+                  choice ~ 1,
+                  family = binomial)
+
+# Run test on null vs additive model
+anova(null_model, add_model, test = "LRT")
 
 #####################
 # Problem 2
