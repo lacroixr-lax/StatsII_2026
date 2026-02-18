@@ -85,13 +85,17 @@ diff_5_15
 odds_ratio_5_15 <- exp(diff_5_15)
 odds_ratio_5_15
 
+# Percent change
+percent <- (odds_ratio_5_15 - 1)*100
+percent
+
 # 2c: Estimated probability an individual will support the policy if there are 
 # 80 out of 192 countries participating. 
 probability <- exp(coef(add_model2)["(Intercept)"] + 
                      coef(add_model2)["countries80 of 192"])/
   (1 + exp(coef(add_model2)["(Intercept)"] + 
              coef(add_model2)["countries80 of 192"]))
-print(probability)
+probability
 
 #####################
 # Problem 3

@@ -114,7 +114,7 @@
 
 	\textbf{Fit an additive model and provide summary output (\autoref{tab:Table1}).}
 
-	I changed the variables from ordered to unordered factors. For the countries variable, this made "20 of 192" the baseline for number of participating countries, while "None" was the baseline for the sanctions for missing emission reduction targets variable. 
+	I changed the variables from ordered to unordered factors. For the countries variable, this made "20 of 192" the baseline for number of participating countries, while "None" was the baseline for the sanctions for missing emission reduction targets variable. I proceded to fit my data to an additive model.
 	
 	\lstinputlisting[language=R, firstline=47, lastline=56]{PS02_RL.R}
 	
@@ -162,7 +162,7 @@
 
 \noindent\textbf{Global null hypothesis, p-value, results discussion, and conclusion.}
 
-	\noindent The global null hypothesis states that neither of the variables, number of participating countries and sanctions for missing emission reduction targets, are significant in predicting whether or not an individual agrees with the given policy. This means that at no levels of either variable would they be significant in predicting the likelihood a person supports a policy. The alternative hypothesis states that at least one of the variables listed, at any level, is significant in predicting the likelihood of whether or not an individual agrees with the given policy. 
+	\noindent The global null hypothesis states that the explanatory variables, number of participating countries and sanctions for missing emission reduction targets, are not significant in predicting whether or not an individual agrees with the given policy. This means that at no levels of either variable would they be significant in predicting the likelihood a person supports a policy. The alternative hypothesis states that at least one of the variables listed, at any level, is significant in predicting the likelihood of whether or not an individual agrees with the given policy. 
 	
 	$H_{0}$: $\beta_{countries}$ = $\beta_{sanctions}$ = 0, $H_{a}$ : At least one $\beta$ $\neq$ 0
 	
@@ -182,7 +182,7 @@
 		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 	\end{verbatim}
 
-	\noindent In \autoref{tab:Table1}, it can be seen that the coefficients for the numbers of participating countries, as well the possible sanctions are significant. This means that they each have a significant impact on predicting the likelihood of an individual supporting a policy. This finding can be further reinforced by the results from the likelihood ratio test between the null model, where no coefficients are present, and the additive model, where all coefficients are present. The p-value for this test was less than 2.2e-16, indicating that the null hypothesis that the number of participating countries and amount of sanctions for missing emission reduction targets are not significant can be rejected, meaning at least one of these variables is signifiant in predicting the likelihood of support. Again, this is also seen in the regression output table for the additive model, as all of the coefficients are noted as significant in their predictive power and should subsequently be included in the model. 
+	\noindent In \autoref{tab:Table1}, it can be seen that the all coefficients for the numbers of participating countries, as well for all possible sanctions are significant. This means that they each have a significant impact on predicting the likelihood of an individual supporting a policy. This finding can be further reinforced by the results from the likelihood ratio test between the null model, where no coefficients are present, and the additive model, where all coefficients are present. The p-value for this test was less than 2.2e-16, indicating that the null hypothesis that the number of participating countries and amount of sanctions for missing emission reduction targets are not significant can be rejected, meaning at least one of these variables is signifiant in predicting the likelihood of support. Again, this is also seen in the regression output table for the additive model, as all of the coefficients are noted as significant in their predictive power and should subsequently be included in the model. 
 	\vspace{1cm}
 	
 
@@ -201,9 +201,10 @@ If any of the explanatory variables are statistically significant in this model,
 		 -0.3251028
 	\end{verbatim}
 			
-	\noindent This indicates that in accordance with our additive model, when holding all other variables constant, when the sanctions are increased from 5\% to 15\%, the log odds that an individual will support the policy decrease by 0.325. The odds ratio can also be computed for this, using the following formula:
+	\noindent This indicates that in accordance with our additive model, when holding all other variables constant, when the sanctions are increased from 5\% to 15\%, the log-odds that an individual will support the policy decrease by 0.325. The odds ratio can also be computed for this in order to report the change in odds in the form of a percentage.
 	
 	\[Odds Ratio = e^{\beta_{j}}\]
+	\[\% Change = (Odds Ratio - 1) * 100\]
 	 
 	\noindent In the case of our $\beta_{j}$, the log-odds difference between $\beta_{sanctions5}$ and $\beta_{sanctions15}$ of -0.325 will be utilized.
 	
@@ -213,14 +214,20 @@ If any of the explanatory variables are statistically significant in this model,
 		   0.7224531 
 	\end{verbatim}
 	
-	\noindent Using the odds ratio, we can interpret the odds that an individual will support a policy when sanctions are increased from 5\% to 15\% as follows: the log-odds that an individual will support a policy decrease by 72.25\% when the sanctions are increased from 5\% to 15\%.
+	\lstinputlisting[language=R, firstline=88, lastline=89]{PS02_RL.R}
+	
+	\begin{verbatim}
+		  -27.75469
+	\end{verbatim}
+	
+	\noindent Using the odds ratio, we can interpret the odds that an individual will support a policy when sanctions are increased from 5\% to 15\% as follows: the odds that an individual will support a policy decrease by 27.75\% when the sanctions are increased from 5\% to 15\%, holding all other variables constant.
 	\vspace{.25cm}
 		
 	\item
 	For the policy in which very few countries participate [20 of 192], how does increasing sanctions from 5\% to 15\% change the odds that an individual will support the policy? (Interpretation of a coefficient)
 	\vspace{.25cm}
 			
-	\noindent As this is an additive model, the number of participating countries does not have an impact on the change in odds when increasing sanctions from 5\% to 15\%. To interpret the change in odds for increasing the sanctions, it will be the same at all levels of country participation and is therefore the same as in question 2(a). When sanctions are increased from 5\% to 15\%, and all other variables are held constant, the log-odds that an individual will support the policy decrease by 0.325, or 72.25\%. 
+	\noindent As this is an additive model, the number of participating countries does not have an impact on the change in odds when increasing sanctions from 5\% to 15\%. To interpret the change in odds for increasing the sanctions, it will be the same at all levels of country participation and is therefore the same as in question 2(a). When sanctions are increased from 5\% to 15\%, and all other variables are held constant, the log-odds that an individual will support the policy decrease by 0.325, and the odds that an individual support the policy decrease by 27.75\%. 
 	\vspace{.25cm}
 			
 	\item
@@ -233,7 +240,7 @@ If any of the explanatory variables are statistically significant in this model,
 	
 	\noindent The coefficients for $\beta_{0}$ and $\beta_{1}$ can be input and utilized to solve for $\pi_{i}$, which is the probability that $Y_{i} = 1$ when $\beta_{1}$ represents the effect on the log-odds that an individual will support a policy if there are 80 of 192 countries participating.
 		
-	\lstinputlisting[language=R, firstline=88, lastline=93]{PS02_RL.R}
+	\lstinputlisting[language=R, firstline=92, lastline=97]{PS02_RL.R}
 	
 	\begin{verbatim}
 		0.5159191 
@@ -252,9 +259,9 @@ If any of the explanatory variables are statistically significant in this model,
 		
 		\noindent 
 		
-		\lstinputlisting[language=R, firstline=100, lastline=103]{PS02_RL.R}
+		\lstinputlisting[language=R, firstline=104, lastline=107]{PS02_RL.R}
 			
-		\lstinputlisting[language=R, firstline=106, lastline=107]{PS02_RL.R}
+		\lstinputlisting[language=R, firstline=110, lastline=111]{PS02_RL.R}
 		
 	\begin{verbatim}
 		Analysis of Deviance Table
