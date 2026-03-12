@@ -17,6 +17,9 @@
 # clear global .envir
 #####################
 
+install.packages("forecast")
+install.packages("zoo")
+
 # remove objects
 rm(list=ls())
 # detach all libraries
