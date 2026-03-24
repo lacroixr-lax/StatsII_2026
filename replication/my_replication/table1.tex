@@ -1,0 +1,46 @@
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+caption={OLS Identity Perpetrator},
+note{}={* p \num{< 0.1}, ** p \num{< 0.05}, *** p \num{< 0.01}},
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]Q[]Q[]Q[]Q[]Q[]},
+hline{2}={1-8}{solid, black, 0.05em},
+hline{27}={1-8}{solid, black, 0.05em},
+hline{1}={1-8}{solid, black, 0.08em},
+hline{30}={1-8}{solid, black, 0.08em},
+column{2-8}={}{halign=c},
+column{1}={}{halign=l},
+}                     %% tabularray inner close
+& Model (1) & Model (2) & Model (3) & Model (4) & Model (5) & Model (6) & Model (7) \\
+(ln) FARC attacks & \num{0.785}*** &  & \num{1.835}*** & \num{1.302}*** & \num{1.100}*** & \num{1.050}*** & \num{1.058}*** \\
+& (\num{0.277}) &  & (\num{0.321}) & (\num{0.243}) & (\num{0.249}) & (\num{0.254}) & (\num{0.264}) \\
+(ln) Paramilitary/BACRIM attacks &  & \num{-1.166}*** & \num{-2.151}*** & \num{-2.400}*** & \num{-1.608}*** & \num{-1.470}*** & \num{-1.322}*** \\
+&  & (\num{0.322}) & (\num{0.385}) & (\num{0.289}) & (\num{0.418}) & (\num{0.431}) & (\num{0.445}) \\
+\% Participation in Referendum &  &  &  & \num{-0.090}* & \num{-0.031} & \num{-0.037} & \num{-0.069} \\
+&  &  &  & (\num{0.047}) & (\num{0.051}) & (\num{0.053}) & (\num{0.055}) \\
+\% Support Santos 2014 &  &  &  & \num{0.586}*** & \num{0.596}*** & \num{0.589}*** & \num{0.585}*** \\
+&  &  &  & (\num{0.022}) & (\num{0.022}) & (\num{0.023}) & (\num{0.025}) \\
+Poverty &  &  &  &  & \num{0.000} & \num{0.003} & \num{-0.008} \\
+&  &  &  &  & (\num{0.035}) & (\num{0.036}) & (\num{0.040}) \\
+(ln) Population &  &  &  &  & \num{-0.018} & \num{-0.126} & \num{-0.196} \\
+&  &  &  &  & (\num{0.527}) & (\num{0.538}) & (\num{0.556}) \\
+Rural Index &  &  &  &  & \num{0.092}*** & \num{0.083}*** & \num{0.085}*** \\
+&  &  &  &  & (\num{0.021}) & (\num{0.022}) & (\num{0.023}) \\
+Coca &  &  &  &  &  & \num{2.022}** & \num{2.128}** \\
+&  &  &  &  &  & (\num{1.028}) & (\num{1.039}) \\
+Oil &  &  &  &  &  & \num{-1.627} & \num{-1.781}* \\
+&  &  &  &  &  & (\num{1.036}) & (\num{1.047}) \\
+(ln) Elevation &  &  &  &  &  &  & \num{0.113} \\
+Departamento FE & ✓ & ✓ & ✓ & ✓ & ✓ & ✓ & ✓ \\
+&  &  &  &  &  &  & (\num{0.358}) \\
+Education Coverage &  &  &  &  &  &  & \num{0.020} \\
+&  &  &  &  &  &  & (\num{0.019}) \\
+Constant & \num{47.947}*** & \num{49.091}*** & \num{46.494}*** & \num{22.452}*** & \num{15.768}* & \num{15.673}** & \num{15.397}* \\
+& (\num{7.203}) & (\num{7.159}) & (\num{7.085}) & (\num{5.543}) & (\num{8.528}) & (\num{7.071}) & (\num{8.852}) \\
+Num.Obs. & \num{993} & \num{1028} & \num{945} & \num{944} & \num{927} & \num{887} & \num{857} \\
+R2 & \num{0.478} & \num{0.463} & \num{0.481} & \num{0.711} & \num{0.720} & \num{0.710} & \num{0.699} \\
+R2 Adj. & \num{0.460} & \num{0.445} & \num{0.462} & \num{0.700} & \num{0.708} & \num{0.698} & \num{0.685} \\
+\end{talltblr}
+\end{table}

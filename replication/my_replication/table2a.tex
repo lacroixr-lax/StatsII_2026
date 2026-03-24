@@ -1,0 +1,32 @@
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+caption={OLS Identity Perpetrator (Models 1--4)},
+note{}={* p \num{< 0.1}, ** p \num{< 0.05}, *** p \num{< 0.01}},
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]Q[]Q[]},
+hline{2}={1-5}{solid, black, 0.05em},
+hline{13}={1-5}{solid, black, 0.05em},
+hline{1}={1-5}{solid, black, 0.08em},
+hline{16}={1-5}{solid, black, 0.08em},
+column{2-5}={}{halign=c},
+column{1}={}{halign=l},
+}                     %% tabularray inner close
+& (1) & (2) & (3) & (4) \\
+(ln) FARC attacks & \num{0.785}*** &  & \num{1.835}*** & \num{1.302}*** \\
+& (\num{0.277}) &  & (\num{0.321}) & (\num{0.243}) \\
+(ln) Paramilitary/BACRIM attacks &  & \num{-1.166}*** & \num{-2.151}*** & \num{-2.400}*** \\
+&  & (\num{0.322}) & (\num{0.385}) & (\num{0.289}) \\
+\% Participation in Referendum &  &  &  & \num{-0.090}* \\
+&  &  &  & (\num{0.047}) \\
+\% Support Santos 2014 &  &  &  & \num{0.586}*** \\
+&  &  &  & (\num{0.022}) \\
+Department Fixed Effects & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+Constant & \num{53.671}*** & \num{60.894}*** & \num{69.814}*** & \num{35.796}*** \\
+& (\num{12.487}) & (\num{12.472}) & (\num{12.279}) & (\num{9.512}) \\
+Num.Obs. & \num{993} & \num{1028} & \num{945} & \num{944} \\
+R2 & \num{0.478} & \num{0.463} & \num{0.481} & \num{0.711} \\
+R2 Adj. & \num{0.460} & \num{0.445} & \num{0.462} & \num{0.700} \\
+\end{talltblr}
+\end{table}
