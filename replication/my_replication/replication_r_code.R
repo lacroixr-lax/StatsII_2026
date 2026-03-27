@@ -28,7 +28,7 @@ pkgTest <- function(pkg){
 # load packages
 lapply(c("tidyverse", "readstata13", "stargazer", "broom",
          "modelsummary", "tibble", "ggplot2", "performance",
-         "see", "car", "corrr", "brms", "lme4"),  pkgTest)
+         "see", "car", "corrr", "brms", "lme4", "texreg"),  pkgTest)
 
 # set working directory
 setwd("/Users/rosalielacroix/Desktop/GitHub/StatsII_2026/replication/my_replication")
@@ -299,7 +299,7 @@ f8 <- as.formula(paste("ref_si ~ ln_exposure_total_mean +
                        ref_partic + share_santos_2_100 +
                        incidence_multidim_pov_2005_100 + lpop + indrural2005 +
                        cultivated100 + oil + ln_altitud + 
-                       coberturabrutaeduc +", dept_vars))
+                       coberturabrutaeduc +", all_depts))
 model_8 <- lm(f8, data = df_all)
 summary(model_8)
 
@@ -308,7 +308,7 @@ f9 <- as.formula(paste("ref_si ~ ln_exposure_total_1000pop_mean +
                        ref_partic + share_santos_2_100 +
                        incidence_multidim_pov_2005_100 + lpop + indrural2005 +
                        cultivated100 + oil + ln_altitud + 
-                       coberturabrutaeduc +", dept_vars))
+                       coberturabrutaeduc +", all_depts))
 model_9 <- lm(f9, data = df_all)
 summary(model_9)
 
@@ -322,7 +322,7 @@ coef_data <- data.frame(
                model_9$coefficients["ln_exposure_total_1000pop_mean"],
                model_7$coefficients["ln_atfarc_cede"],
                model_7$coefficients["ln_atparabacrim_cede"]),
-  se = c(0.34520, 0.34420, 0.263773, 0.445106)
+  se = c(0.34520, 0.34420, 0.263773, 0.445106) # taken from model summaries
 ) |>
   mutate(
     ci_low = estimate - 1.96 * se,
@@ -359,23 +359,11 @@ dev.off()
 
 ## MY TWIST ##
 
-# run model with only all departments
-dept_vars_formula <- paste(all_depts, collapse = " + ") # paste all depts together
-f_depts <- as.formula(paste("ref_si ~ +", dept_vars_formula)) # create formula
-model_depts <- lm(f_depts, data = df) # run model
-summary(model_depts)
-
-diagnostic_plot_depts <- plot(check_model(model_depts, panel=FALSE)) # diagnostic plots
-diagnostic_plot_depts[[5]] # collinearity plot
-
-vif_depts <- vif(model_depts)
-
 ## multilevel model
 
 # need to create a new column with the departments together and factor it
 df$departamento <- factor(
-  names(df[, all_depts])[max.col(df[, all_depts])]
-)
+  names(df[, all_depts])[max.col(df[, all_depts])])
 
 # run all models
 # model 1: FARC attacks only
@@ -428,3 +416,83 @@ multi_model_7 <- lmer(ref_si ~ ln_atfarc_cede + ln_atparabacrim_cede +
                       + coberturabrutaeduc + (1 | departamento),
                       data = df)
 summary(multi_model_7)
+
+# determine and show shifted intercepts 
+data.frame(coef(multi_model_7)$departamento)[1]
+
+# table
+texreg(list(multi_model_1, multi_model_2, multi_model_3, multi_model_4,
+            multi_model_5, multi_model_6, multi_model_7), 
+       file = "multi_model_table.tex",
+       booktabs = TRUE,
+       table = FALSE,
+       include.variance = TRUE)
+
+## Predicted probabilities
+
+# histogram
+df$exp_atfarc_cede <- exp(df$ln_atfarc_cede)
+
+hist(df$exp_atfarc_cede, breaks = 100,
+     xlab = "FARC Attacks", main = "Frequency of FARC Attacks",
+     col = "purple")
+
+mean(df$exp_atfarc_cede, na.rm = TRUE)
+
+hist(exp(df$ln_atparabacrim_cede), breaks = 100,
+     xlab = "Para/BACRIM Attacks", main = "Frequency of Para/BACRIM Attacks",
+     col = "blue")
+
+mean(exp(df$ln_atparabacrim_cede), na.rm = TRUE)
+
+# find predicted probabilities of various levels of farc attacks
+
+# repeat the first 100 rows of the original dataframe
+prediction_data <- df[rep(1, 100), ]
+
+# fill all department columns with 0
+dept_cols <- grep("^departamento_", names(prediction_data), value = TRUE)
+prediction_data [, dept_cols] <- 0
+
+# fill every other variable, make all values equal to the mean
+prediction_data$ln_atparabacrim_cede = mean(df$ln_atparabacrim_cede, na.rm = TRUE)
+prediction_data$ref_partic = mean(df$ref_partic, na.rm = TRUE)
+prediction_data$share_santos_2_100 = mean(df$share_santos_2_100, na.rm = TRUE)
+prediction_data$incidence_multidim_pov_2005_100 = mean(df$incidence_multidim_pov_2005_100, na.rm = TRUE)
+prediction_data$lpop = mean(df$lpop, na.rm = TRUE)
+prediction_data$indrural2005 = mean(df$indrural2005, na.rm = TRUE)
+prediction_data$cultivated100 = mean(df$cultivated100, na.rm = TRUE)
+prediction_data$oil = mean(df$oil, na.rm = TRUE)
+prediction_data$ln_altitud = mean(df$ln_altitud, na.rm = TRUE)
+prediction_data$coberturabrutaeduc = mean(df$coberturabrutaeduc, na.rm = TRUE)
+
+# have FARC attacks variable vary amongst ranges between the min and max values
+prediction_data$ln_atfarc_cede <- as.numeric(seq(min(df$ln_atfarc_cede, na.rm = TRUE), 
+                                       max(df$ln_atfarc_cede, na.rm = TRUE),
+                                       length.out = 100))
+
+# predict new data using model_7 on the prediction data created
+preds <- predict(model_7, newdata = prediction_data, type = "response",
+                 interval = "confidence")
+
+# unlist predicted column
+prediction_data$predicted <- preds[, "fit"]
+
+# confidence intervals around predicted probabilities
+prediction_data$lower_95 <- preds[, "lwr"]
+prediction_data$upper_95 <- preds[, "upr"]
+
+# plot predicted % Yes votes in the referendum against farc attacks
+pdf("pred_plot.pdf")
+ggplot(prediction_data, aes(x = exp(ln_atfarc_cede), y = predicted)) +
+  geom_ribbon(aes(ymin=lower_95, ymax=upper_95), alpha = 0.2) +
+  geom_point() +
+  geom_rug(data = df, aes(x=exp_atfarc_cede),
+           inherit.aes = FALSE, alpha = 0.4, sides = "b") +
+  labs(y = "Predicted % Yes Votes in Referendum",
+       x = "FARC Attacks",
+       title = "FARC Attacks vs Predicted Votes in Referendum") +
+  theme_minimal()
+pred_plot
+dev.off()
+
