@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.22)  26 MAR 2026 11:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.22)  31 MAR 2026 20:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -994,6 +994,17 @@ Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
 \l__siunitx_unit_position_int=\count389
 \l__siunitx_unit_total_int=\count390
 )
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hanging/hanging.sty
+Package: hanging 2009/09/02 v1.2b hanging paragraphs and punctuation
+\h@ngcommawd=\skip73
+\h@ngfstopwd=\skip74
+\h@ngquotewd=\skip75
+\h@ngdquotewd=\skip76
+\h@ngquerywd=\skip77
+\h@ngexclwd=\skip78
+\h@ngcolonwd=\skip79
+\h@ngscolonwd=\skip80
+)
 (/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen359
@@ -1016,29 +1027,29 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 )
 \c@hyp=\count395
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 70.
+h' as default language. on input line 73.
 
 (./replication.aux)
 \openout1 = `replication.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1062,20 +1073,20 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 70.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 73.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 70.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 73.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package xypdf Info: Line width: 0.47998pt on input line 70.
-Package hyperref Info: Link coloring OFF on input line 70.
+Package xypdf Info: Line width: 0.47998pt on input line 73.
+Package hyperref Info: Link coloring OFF on input line 73.
 
 (./replication.out) (./replication.out)
 \@outlinefile=\write7
@@ -1095,13 +1106,13 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 70.
+or `english'. on input line 73.
 
 
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (11.20714pt too wide) in paragraph at lines 92--93
+Overfull \hbox (11.20714pt too wide) in paragraph at lines 95--96
 \OT1/cmr/m/n/12 bian Ref-er-en-dum. Latin Amer-i-can Pol-i-tics and So-ci-ety, 
 62(4), 24{49. doi:10.1017/lap.2020.14". 
  []
@@ -1113,7 +1124,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.106 	\newpage
+l.109 	\newpage
                 [1{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/
 cm-super-ts1.enc}]
 (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -1126,7 +1137,7 @@ File: lstlang2.sty 2024/09/23 1.10c listings language file
 File: lstlang3.sty 2024/09/23 1.10c listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 115.
+nput line 118.
 
 (./replication_r_code.R
 LaTeX Font Info:    Trying to load font information for OML+cmr on input line 3
@@ -1181,44 +1192,60 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 [8] (./replication_r_code.R
 
 [9])
-<figure_1.pdf, id=270, 505.89pt x 505.89pt>
+<figure_1.pdf, id=272, 505.89pt x 505.89pt>
 File: figure_1.pdf Graphic file (type pdf)
 <use figure_1.pdf>
-Package pdftex.def Info: figure_1.pdf  used on input line 211.
+Package pdftex.def Info: figure_1.pdf  used on input line 212.
 (pdftex.def)             Requested size: 375.81166pt x 341.43785pt.
-
-
-Package hyperref Warning: Suppressing empty link on input line 214.
-
 
 
 [10]
 
 [11 <./figure_1.pdf>] (./replication_r_code.R) (./replication_r_code.R)
-(./replication_r_code.R) (./replication_r_code.R
+(./replication_r_code.R)
 
 [12
 
-]) (./replication_r_code.R) (./replication_r_code.R) (./replication_r_code.R) (
-./replication_r_code.R) (./multi_model_table.tex)
+] (./replication_r_code.R) (./replication_r_code.R) (./replication_r_code.R) (.
+/replication_r_code.R) (./replication_r_code.R)
 
-[13]
+[13] (./multi_model_table.tex) (./replication_r_code.R)
 
-[14] (./replication_r_code.R)
+[14]
 
-[15] (./replication_r_code.R
+[15]
+Overfull \hbox (9.11792pt too wide) in paragraph at lines 320--321
+\OT1/cmr/m/n/12 quently plot these val-ues against the ex-po-nen-ti-ated (ln) F
+ARC At-tacks and (ln) Para/BACRIM
+ []
 
-[16])
-<pred_plot.pdf, id=388, 505.89pt x 505.89pt>
+
+
+[16] (./replication_r_code.R
+
+[17])
+<pred_plot.pdf, id=437, 505.89pt x 505.89pt>
 File: pred_plot.pdf Graphic file (type pdf)
 <use pred_plot.pdf>
-Package pdftex.def Info: pred_plot.pdf  used on input line 327.
+Package pdftex.def Info: pred_plot.pdf  used on input line 331.
+(pdftex.def)             Requested size: 328.8323pt x 284.53154pt.
+ (./replication_r_code.R
+
+[18 <./pred_plot.pdf>])
+<pred_plot_para.pdf, id=475, 505.89pt x 505.89pt>
+File: pred_plot_para.pdf Graphic file (type pdf)
+<use pred_plot_para.pdf>
+Package pdftex.def Info: pred_plot_para.pdf  used on input line 343.
 (pdftex.def)             Requested size: 328.8323pt x 284.53154pt.
 
 
-[17]
+[19]
 
-[18 <./pred_plot.pdf>] (./replication.aux)
+[20 <./pred_plot_para.pdf>]
+
+[21]
+
+[22] (./replication.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1227,13 +1254,13 @@ Package rerunfilecheck Info: File `replication.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34633 strings out of 473190
- 680586 string characters out of 5715800
- 1687379 words of memory out of 5000000
- 56974 multiletter control sequences out of 15000+600000
+ 34826 strings out of 473190
+ 683600 string characters out of 5715800
+ 1692078 words of memory out of 5000000
+ 57082 multiletter control sequences out of 15000+600000
  573647 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,15n,110p,3243b,2664s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,15n,110p,3243b,2671s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
@@ -1251,10 +1278,10 @@ e/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
 25/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texliv
 e/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/
 2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on replication.pdf (19 pages, 277633 bytes).
+Output written on replication.pdf (23 pages, 310751 bytes).
 PDF statistics:
- 579 PDF objects out of 1000 (max. 8388607)
- 514 compressed objects within 6 object streams
- 332 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 701 PDF objects out of 1000 (max. 8388607)
+ 629 compressed objects within 7 object streams
+ 411 named destinations out of 1000 (max. 500000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

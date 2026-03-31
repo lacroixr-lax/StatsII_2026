@@ -338,21 +338,24 @@ coef_data <- data.frame(
 pdf("figure_1.pdf")
 figure_1 <- ggplot(coef_data, aes(x = estimate, y = variable)) +
   geom_vline(xintercept = 0, linetype = "solid", color = "black") +
-  geom_segment(aes(x = ci_low, xend = ci_high, 
-                   y = variable, yend = variable,
-                   linetype = significant),
+  geom_segment(aes(x = ci_low, xend = ci_high,
+                   y = variable, yend = variable),
                color = "purple", linewidth = 0.8) +
-  geom_point(aes(x = estimate), 
-             size = 4, color = "purple") +
+  geom_point(size = 3, color = "purple") +
   labs(
     x = "DV: Support for the \"Yes\" in the 2016 Referendum",
     y = NULL
   ) +
+  coord_cartesian(xlim = c(min(coef_data$ci_low) - 0.2, 
+                           max(coef_data$ci_high) + 0.2)) +
+  scale_y_discrete(expand = expansion(mult = 0.15)) +
   theme_minimal() +
   theme(
+    legend.position   = "none",           # remove the legend
     panel.grid.major.y = element_blank(),
     panel.grid.minor   = element_blank(),
-    axis.text.y        = element_text(size = 11)
+    axis.text.y        = element_text(size = 11),
+    plot.margin        = margin(10, 15, 10, 10)
   )
 figure_1
 dev.off()
@@ -431,8 +434,6 @@ texreg(list(multi_model_1, multi_model_2, multi_model_3, multi_model_4,
 ## Predicted probabilities
 
 # histogram
-df$exp_atfarc_cede <- exp(df$ln_atfarc_cede)
-
 hist(df$exp_atfarc_cede, breaks = 100,
      xlab = "FARC Attacks", main = "Frequency of FARC Attacks",
      col = "purple")
@@ -448,43 +449,43 @@ mean(exp(df$ln_atparabacrim_cede), na.rm = TRUE)
 # find predicted probabilities of various levels of farc attacks
 
 # repeat the first 100 rows of the original dataframe
-prediction_data <- df[rep(1, 100), ]
+prediction_data_farc <- df[rep(1, 100), ]
 
 # fill all department columns with 0
-dept_cols <- grep("^departamento_", names(prediction_data), value = TRUE)
-prediction_data [, dept_cols] <- 0
+dept_cols <- grep("^departamento_", names(prediction_data_farc), value = TRUE)
+prediction_data_farc[, dept_cols] <- 0
 
 # fill every other variable, make all values equal to the mean
-prediction_data$ln_atparabacrim_cede = mean(df$ln_atparabacrim_cede, na.rm = TRUE)
-prediction_data$ref_partic = mean(df$ref_partic, na.rm = TRUE)
-prediction_data$share_santos_2_100 = mean(df$share_santos_2_100, na.rm = TRUE)
-prediction_data$incidence_multidim_pov_2005_100 = mean(df$incidence_multidim_pov_2005_100, na.rm = TRUE)
-prediction_data$lpop = mean(df$lpop, na.rm = TRUE)
-prediction_data$indrural2005 = mean(df$indrural2005, na.rm = TRUE)
-prediction_data$cultivated100 = mean(df$cultivated100, na.rm = TRUE)
-prediction_data$oil = mean(df$oil, na.rm = TRUE)
-prediction_data$ln_altitud = mean(df$ln_altitud, na.rm = TRUE)
-prediction_data$coberturabrutaeduc = mean(df$coberturabrutaeduc, na.rm = TRUE)
+prediction_data_farc$ln_atparabacrim_cede = mean(df$ln_atparabacrim_cede, na.rm = TRUE)
+prediction_data_farc$ref_partic = mean(df$ref_partic, na.rm = TRUE)
+prediction_data_farc$share_santos_2_100 = mean(df$share_santos_2_100, na.rm = TRUE)
+prediction_data_farc$incidence_multidim_pov_2005_100 = mean(df$incidence_multidim_pov_2005_100, na.rm = TRUE)
+prediction_data_farc$lpop = mean(df$lpop, na.rm = TRUE)
+prediction_data_farc$indrural2005 = mean(df$indrural2005, na.rm = TRUE)
+prediction_data_farc$cultivated100 = mean(df$cultivated100, na.rm = TRUE)
+prediction_data_farc$oil = mean(df$oil, na.rm = TRUE)
+prediction_data_farc$ln_altitud = mean(df$ln_altitud, na.rm = TRUE)
+prediction_data_farc$coberturabrutaeduc = mean(df$coberturabrutaeduc, na.rm = TRUE)
 
 # have FARC attacks variable vary amongst ranges between the min and max values
-prediction_data$ln_atfarc_cede <- as.numeric(seq(min(df$ln_atfarc_cede, na.rm = TRUE), 
+prediction_data_farc$ln_atfarc_cede <- as.numeric(seq(min(df$ln_atfarc_cede, na.rm = TRUE), 
                                        max(df$ln_atfarc_cede, na.rm = TRUE),
                                        length.out = 100))
 
 # predict new data using model_7 on the prediction data created
-preds <- predict(model_7, newdata = prediction_data, type = "response",
+preds_farc <- predict(model_7, newdata = prediction_data_farc, type = "response",
                  interval = "confidence")
 
 # unlist predicted column
-prediction_data$predicted <- preds[, "fit"]
+prediction_data_farc$predicted <- preds_farc[, "fit"]
 
 # confidence intervals around predicted probabilities
-prediction_data$lower_95 <- preds[, "lwr"]
-prediction_data$upper_95 <- preds[, "upr"]
+prediction_data_farc$lower_95 <- preds_farc[, "lwr"]
+prediction_data_farc$upper_95 <- preds_farc[, "upr"]
 
 # plot predicted % Yes votes in the referendum against farc attacks
 pdf("pred_plot.pdf")
-ggplot(prediction_data, aes(x = exp(ln_atfarc_cede), y = predicted)) +
+pred_plot <- ggplot(prediction_data_farc, aes(x = exp(ln_atfarc_cede), y = predicted)) +
   geom_ribbon(aes(ymin=lower_95, ymax=upper_95), alpha = 0.2) +
   geom_point() +
   geom_rug(data = df, aes(x=exp_atfarc_cede),
@@ -496,3 +497,52 @@ ggplot(prediction_data, aes(x = exp(ln_atfarc_cede), y = predicted)) +
 pred_plot
 dev.off()
 
+# find predicted probabilities for varying levels of para/bacrim attacks
+# repeat the first 100 rows of the original dataframe
+prediction_data_para <- df[rep(1, 100), ]
+
+# fill all department columns with 0
+dept_cols <- grep("^departamento_", names(prediction_data_para), value = TRUE)
+prediction_data_para[, dept_cols] <- 0
+
+# fill every other variable, make all values equal to the mean
+prediction_data_para$ln_atfarc_cede = mean(df$ln_atfarc_cede, na.rm = TRUE)
+prediction_data_para$ref_partic = mean(df$ref_partic, na.rm = TRUE)
+prediction_data_para$share_santos_2_100 = mean(df$share_santos_2_100, na.rm = TRUE)
+prediction_data_para$incidence_multidim_pov_2005_100 = mean(df$incidence_multidim_pov_2005_100, na.rm = TRUE)
+prediction_data_para$lpop = mean(df$lpop, na.rm = TRUE)
+prediction_data_para$indrural2005 = mean(df$indrural2005, na.rm = TRUE)
+prediction_data_para$cultivated100 = mean(df$cultivated100, na.rm = TRUE)
+prediction_data_para$oil = mean(df$oil, na.rm = TRUE)
+prediction_data_para$ln_altitud = mean(df$ln_altitud, na.rm = TRUE)
+prediction_data_para$coberturabrutaeduc = mean(df$coberturabrutaeduc, na.rm = TRUE)
+
+# have FARC attacks variable vary amongst ranges between the min and max values
+prediction_data_para$ln_atparabacrim_cede <- as.numeric(seq(min(df$ln_atparabacrim_cede, na.rm = TRUE), 
+                                                      max(df$ln_atparabacrim_cede, na.rm = TRUE),
+                                                      length.out = 100))
+
+# predict new data using model_7 on the prediction data created
+preds_para <- predict(model_7, newdata = prediction_data_para, type = "response",
+                      interval = "confidence")
+
+# unlist predicted column
+prediction_data_para$predicted <- preds_para[, "fit"]
+
+# confidence intervals around predicted probabilities
+prediction_data_para$lower_95 <- preds_para[, "lwr"]
+prediction_data_para$upper_95 <- preds_para[, "upr"]
+
+# plot predicted % Yes votes in the referendum against farc attacks
+pdf("pred_plot_para.pdf")
+pred_plot_para <- ggplot(prediction_data_para, aes(x = exp(ln_atparabacrim_cede), y = predicted)) +
+  geom_ribbon(aes(ymin=lower_95, ymax=upper_95), alpha = 0.2) +
+  geom_point() +
+  geom_rug(data = df, aes(x=exp(ln_atparabacrim_cede)),
+           inherit.aes = FALSE, alpha = 0.4, sides = "b") +
+  labs(y = "Predicted % Yes Votes in Referendum",
+       x = "Para/BACRIM",
+       title = "Para/BACRIM Attacks vs Predicted Votes in Referendum") +
+  theme_minimal()
+pred_plot_para
+dev.off()
