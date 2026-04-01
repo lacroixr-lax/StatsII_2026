@@ -7,6 +7,8 @@
 \usepackage{siunitx}
 \UseTblrLibrary{siunitx}
 \UseTblrLibrary{booktabs}
+\usepackage{colortbl}
+\usepackage{xcolor}
 
 \mode<presentation>
 {
@@ -43,7 +45,7 @@
 	
 	\begin{frame}{Historical Context}
 		\begin{itemize}
-			\item Colombian Civil War
+			\item Colombian Conflict
 				\item FARC, paramilitaries, BACRIM
 			\item Election of Juan Manuel Santos and Peace Talks
 			\item 2016 Peace Referendum
@@ -57,13 +59,16 @@
 		
 		\begin{itemize}
 			\item In areas where Group A has committed most of the violence, residents are more likely to support a peace agreement with Group A.
-			\item In areas where B has committed most of the violence, residents are less likely to support a peace agreement with Group A.
+			\item In areas where Group B has committed most of the violence, residents are less likely to support a peace agreement with Group A.
 		\end{itemize}
 	\end{frame}
 	
 	\section{Data}
 	
-	\begin{frame}{Independent and Dependent Variables}
+	\begin{frame}{Model and Variables}
+		\begin{itemize}
+			\item \textbf{OLS Model}
+		\end{itemize}
 			\textbf{Dependent Variable:}
 		\begin{itemize}
 			\item \% of votes per municipality supporting the 2016 peace agreement referendum
@@ -94,7 +99,7 @@
 		\end{itemize}
 	\end{frame}
 	
-	\begin{frame}{Departmental Effects}
+	\begin{frame}{Departmental Fixed Effects}
 			\textbf{Fixed Effects Model}
 		\begin{itemize}
 			\item Control for unobserved characteristics that do not change over time and are specific to each department
@@ -103,16 +108,6 @@
 	\end{frame}
 	
 	\section{Replication}
-	
-	\begin{frame}{OLS Model}
-		
-		\begin{figure}
-			\includegraphics[width=0.7\linewidth]{"Screenshot 2026-03-30 at 12.00.33.pdf"}
-		\end{figure}
-		\begin{figure}
-			\includegraphics[width=0.7\linewidth]{"Screenshot 2026-03-30 at 12.00.55.pdf"}
-		\end{figure}
-	\end{frame}
 	
 	\begin{frame}{Table 1. OLS Identity Perpetrator (Models 5-7)}
 	\begin{table}
@@ -211,10 +206,13 @@
 			\toprule
 			& Model 5 & Model 6 & Model 7 \\
 			\midrule
+			\rowcolor{purple!30}
 			(Intercept)                         & $15.63^{*}$   & $18.26^{**}$  & $20.16^{*}$  \\
 	    	& $(6.66)$      & $(6.88)$      & $(8.46)$     \\
+			\rowcolor{yellow!30}
 			ln\_atfarc\_cede                    & $1.05^{***}$  & $0.98^{***}$  & $1.03^{***}$ \\
 			& $(0.24)$      & $(0.25)$      & $(0.26)$     \\
+			\rowcolor{yellow!30}
 			ln\_atparabacrim\_cede              & $-1.67^{***}$ & $-1.45^{***}$ & $-1.34^{**}$ \\
 		 	& $(0.41)$      & $(0.42)$      & $(0.44)$     \\
 			share\_santos\_2\_100         & $0.60^{***}$  & $0.59^{***}$  & $0.58^{***}$ \\
