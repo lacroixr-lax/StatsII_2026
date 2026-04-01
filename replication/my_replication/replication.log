@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.22)  31 MAR 2026 20:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.22)  1 APR 2026 14:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1124,10 +1124,10 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.109 	\newpage
-                [1{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/
-cm-super-ts1.enc}]
-(/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+l.111 					\item S
+                  pecifically, individuals living in areas more impacted by ...
+[1{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+}] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang2.sty
@@ -1137,7 +1137,7 @@ File: lstlang2.sty 2024/09/23 1.10c listings language file
 File: lstlang3.sty 2024/09/23 1.10c listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 118.
+nput line 123.
 
 (./replication_r_code.R
 LaTeX Font Info:    Trying to load font information for OML+cmr on input line 3
@@ -1161,11 +1161,11 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 52.
 
 
-[3]) (./replication_r_code.R) (./replication_r_code.R)
+[3]) (./replication_r_code.R) (./replication_r_code.R
 
-[4] (./replication_r_code.R) (./replication_r_code.R)
+[4]) (./replication_r_code.R) (./replication_r_code.R
 
-[5] (./replication_r_code.R) (./replication_r_code.R
+[5]) (./replication_r_code.R) (./replication_r_code.R
 
 [6]) (./table2a.tex
 > Step: init table outer spec.
@@ -1192,10 +1192,10 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 [8] (./replication_r_code.R
 
 [9])
-<figure_1.pdf, id=272, 505.89pt x 505.89pt>
+<figure_1.pdf, id=262, 505.89pt x 505.89pt>
 File: figure_1.pdf Graphic file (type pdf)
 <use figure_1.pdf>
-Package pdftex.def Info: figure_1.pdf  used on input line 212.
+Package pdftex.def Info: figure_1.pdf  used on input line 215.
 (pdftex.def)             Requested size: 375.81166pt x 341.43785pt.
 
 
@@ -1214,7 +1214,7 @@ Package pdftex.def Info: figure_1.pdf  used on input line 212.
 [14]
 
 [15]
-Overfull \hbox (9.11792pt too wide) in paragraph at lines 320--321
+Overfull \hbox (9.11792pt too wide) in paragraph at lines 323--324
 \OT1/cmr/m/n/12 quently plot these val-ues against the ex-po-nen-ti-ated (ln) F
 ARC At-tacks and (ln) Para/BACRIM
  []
@@ -1224,18 +1224,18 @@ ARC At-tacks and (ln) Para/BACRIM
 [16] (./replication_r_code.R
 
 [17])
-<pred_plot.pdf, id=437, 505.89pt x 505.89pt>
+<pred_plot.pdf, id=435, 505.89pt x 505.89pt>
 File: pred_plot.pdf Graphic file (type pdf)
 <use pred_plot.pdf>
-Package pdftex.def Info: pred_plot.pdf  used on input line 331.
+Package pdftex.def Info: pred_plot.pdf  used on input line 334.
 (pdftex.def)             Requested size: 328.8323pt x 284.53154pt.
  (./replication_r_code.R
 
 [18 <./pred_plot.pdf>])
-<pred_plot_para.pdf, id=475, 505.89pt x 505.89pt>
+<pred_plot_para.pdf, id=473, 505.89pt x 505.89pt>
 File: pred_plot_para.pdf Graphic file (type pdf)
 <use pred_plot_para.pdf>
-Package pdftex.def Info: pred_plot_para.pdf  used on input line 343.
+Package pdftex.def Info: pred_plot_para.pdf  used on input line 346.
 (pdftex.def)             Requested size: 328.8323pt x 284.53154pt.
 
 
@@ -1256,11 +1256,11 @@ Package rerunfilecheck Info: File `replication.out' has not changed.
 Here is how much of TeX's memory you used:
  34826 strings out of 473190
  683600 string characters out of 5715800
- 1692078 words of memory out of 5000000
+ 1710255 words of memory out of 5000000
  57082 multiletter control sequences out of 15000+600000
  573647 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,15n,110p,3243b,2671s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,15n,110p,3243b,2646s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
@@ -1278,7 +1278,7 @@ e/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
 25/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texliv
 e/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/
 2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on replication.pdf (23 pages, 310751 bytes).
+Output written on replication.pdf (23 pages, 312243 bytes).
 PDF statistics:
  701 PDF objects out of 1000 (max. 8388607)
  629 compressed objects within 7 object streams

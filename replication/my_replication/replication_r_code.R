@@ -295,20 +295,20 @@ modelsummary(models_b,
 # each of those included, and not include FARC and para/BACRIM attacks.
 
 # Model with exposure total mean
-f8 <- as.formula(paste("ref_si ~ ln_exposure_total_mean + 
+f8 <- as.formula(paste(c("ref_si ~ ln_exposure_total_mean + 
                        ref_partic + share_santos_2_100 +
                        incidence_multidim_pov_2005_100 + lpop + indrural2005 +
                        cultivated100 + oil + ln_altitud + 
-                       coberturabrutaeduc +", all_depts))
+                       coberturabrutaeduc +", all_depts), collapse = " + "))
 model_8 <- lm(f8, data = df_all)
 summary(model_8)
 
 # Model with exposure total 1000 pop mean
-f9 <- as.formula(paste("ref_si ~ ln_exposure_total_1000pop_mean + 
+f9 <- as.formula(paste(c("ref_si ~ ln_exposure_total_1000pop_mean + 
                        ref_partic + share_santos_2_100 +
                        incidence_multidim_pov_2005_100 + lpop + indrural2005 +
                        cultivated100 + oil + ln_altitud + 
-                       coberturabrutaeduc +", all_depts))
+                       coberturabrutaeduc +", all_depts), collapse = " + "))
 model_9 <- lm(f9, data = df_all)
 summary(model_9)
 

@@ -94,19 +94,24 @@
 	
 	The study I have chosen to replicate is "Kreiman, G., \& Masullo, J. (2020). Who Shot the Bullets? Exposure to Violence and Attitudes Toward Peace: Evidence from the 2016 Colombian Referendum. Latin American Politics and Society, 62(4), 24–49. doi:10.1017/lap.2020.14". 
 	
-	This study explores a potential reasoning behind the surprising results of the 2016 Peace Referendum in Colombia. The referendum was brought to a public vote in 2016 by the Colombian president Juan Manuel Santos, following peace talks and a subsequent ceasefire agreeement between the Colombian government and the Revolutionary Armed Forces of Colombia (referred to as "FARC" from this point forward). FARC were known as the largest and most powerful guerilla group operating throughout the 50 years of the Colombian civil war. The referendum also included provisions for rural reform, strategies to reduce coca growth and drug trafficking, as well as the allowance of FARC participating in elections. The public vote resulted in the referendum not being passed by an incredibly small margin. Santos and FARC subsequently continued negotiations and Santos passed the referendum through Colombian congress in late 2016.
+	This study explores a potential reasoning behind the surprising results of the 2016 Peace Referendum in Colombia. The referendum was brought to a public vote in 2016 by the Colombian president Juan Manuel Santos, following peace talks and a subsequent ceasefire agreeement between the Colombian government and the Revolutionary Armed Forces of Colombia (referred to as "FARC" from this point forward). FARC were known as the largest and most powerful guerilla group operating throughout the 50 years of the Colombian civil war. The referendum also included provisions for rural reform, strategies to reduce coca growth and drug trafficking, as well as the allowance of FARC to participate in elections. The public vote resulted in the referendum not being passed by an incredibly small margin. Santos and FARC subsequently continued negotiations and Santos passed the referendum through Colombian congress in late 2016.
 	
-	Due to surprising results of the public referendum vote, researchers began to explore why this might have been the case. Preliminary research determined that there were clear geographical patterns within the votes, which was also a characteristic of patterns of violence throughout the war. Subsequent hypotheses have stated that support for the referendum was higher in areas more strongly impacted by war-time violence, as well as that areas under FARC control voted against the referendum due to the fact that it did not appear to punish FARC enough. Ultimately, there have been a great amount conflicting beliefs as to why the referendum did not go through on the public vote. Kreiman and Masullo discovered a gap in the research regarding how variation in people's experiences of violence might have impacted their attitudes towards peace, and ultimately the way they voted in the referendum. They hypothesized that the identity of the perpetrator matters in how people are affected by violence and their subsequent attitude towards peace. Specifically, that individuals in municipalities more impacted by FARC violence were more supportive of the referendum, whereas people more impacted by paramilitary violence were less supportive. The main paramilitary group considered in this investigation was BACRIM (criminal bands in spanish), a paramilitary group formed following the demobilization of the United Self Defence Forces of Colombia (AUC). The AUC was a paramilitary group formed in the 1980s to combat the advancements of FARC.
+	Due to the surprising results of the public referendum vote, researchers began to explore why this might have been the case. Preliminary research determined that there were clear geographical patterns within the votes, which was also a characteristic of patterns of violence throughout the war. Subsequent hypotheses have stated that support for the referendum was higher in areas more strongly impacted by war-time violence, as well as that areas under FARC control voted against the referendum due to the fact that it did not appear to punish FARC enough. Ultimately, there have been many conflicting beliefs as to why the referendum did not go through on the public vote. Kreiman and Masullo discovered a gap in the research regarding how variation in people's experiences of violence might have impacted their attitudes towards peace, and ultimately the way they voted in the referendum. They hypothesized that the identity of the perpetrator matters in how people are affected by violence and their subsequent attitude towards peace. Specifically, that individuals in municipalities more impacted by FARC violence were more supportive of the referendum, whereas people more impacted by paramilitary violence were less supportive. The main paramilitary group considered in this investigation was BACRIM (criminal bands in spanish), a paramilitary group formed following the demobilization of the United Self Defence Forces of Colombia (AUC). The AUC was a paramilitary group formed in the 1980s with the intention of combatting the advancements of FARC.
 	
 	\vspace{.5cm}
 	
 	\textbf{Hypotheses:}
 		\begin{itemize}
 			\item In areas where Group A has committed most of the violence, residents are more likely to support a peace agreement with Group A.
+				\begin{itemize}
+					\item Specifically, individuals living in areas more impacted by FARC violence, were more likely to vote in support of the peace agreement with the FARC.
+				\end{itemize}
 			\item In areas where B has committed most of the violence, residents are less likely to support a peace agreement with Group A.
+				\begin{itemize}
+					\item Specifically, individuals living in areas more impacted by paramilitary/BACRIM violence, were more likely to vote in opposition of the peace agreement with the FARC.
+				\end{itemize}
 		\end{itemize}
 	
-	\newpage
 	\textbf{Method:}
 	
 	In order to determine how violence perpetrated by FARC and/or paramilitaries/BACRIM impacted the victims' votes in the 2016 referendum, Kreiman and Masullo gathered previously collected data on overall exposure to violence in municipalities throughout Colombia, number of attacks perpetrated by each group in each municipality, the percentage of votes per municpality supporting the referendum, as well as various control variables. This was a quantitative study utilizing an ordinary least squares regression with departmental fixed effects to make inferences regarding their research question and hypotheses. 
@@ -126,8 +131,8 @@
 	
 	\noindent Set of variables measuring the average number of violent attacks carried out by FARC and paramilitaries/BACRIM from the years 1988-2010.
 	\begin{itemize}
-		\item (ln) FARC attacks (ln\_atfarc\_cede)
-		\item (ln) Paramilitary/BACRIM attacks (ln\_atparabacrim\_cede)
+		\item (ln) FARC attacks (\texttt{ln\_atfarc\_cede})
+		\item (ln) Paramilitary/BACRIM attacks (\texttt{ln\_atparabacrim\_cede})
 	\end{itemize}
 	
 	\textbf{Control Variables:}
@@ -147,13 +152,13 @@
 	
 	\textbf{Fixed Effects:}
 	
-	A fixed effects model was utilized to control for unobserved characteristics that do not change over time and are specific to each department, as Colombia consists of 32 departments and one capital district (Bogota). For the purpose of departmental fixed effects, Bogota was considered its own department. This model added a dummy variable for each department, allowing each to have its own unique intercept.
+	A fixed effects model was utilized to control for unobserved characteristics that do not change over time and are specific to each department, as Colombia consists of 32 departments and one capital district (Bogota). For the purpose of departmental fixed effects, Bogota was considered its own department. This model added a dummy variable for each department, which were not represented within the final model, but were included in the regression to absorb the effects of department-level differences between municipalities.
 	
 	\vspace{.8cm}
 	
 	\section*{3. Original Model}
 	
-	\noindent The authors utilized Stata, which has a wildcard variable denotation to match naming patterns that the authors used to capture the 33 department in their formula. As R does not have this capability, I created an object that included all of the departments that I pasted onto each formula.
+	\noindent The authors utilized Stata, which has a wildcard variable denotation to match naming patterns that the authors used to capture the 33 departments in their formula. As R does not have this capability, I created an object that included all of the departments that I pasted onto each formula.
 	
 	\lstinputlisting[language=R, firstline=47, lastline=48]{replication_r_code.R}
 	
@@ -172,8 +177,6 @@
 	\noindent\textbf{Model 3: FARC and Para/BACRIM Attacks Only}
 	
 	\lstinputlisting[language=R, firstline=91, lastline=108]{replication_r_code.R}
-	
-	\newpage
 	
 	\noindent\textbf{Model 4: FARC Attacks, Para/BACRIM Attacks, \% Participation in Referendum, and \% Support for Santos in 2014}
 	
@@ -197,13 +200,13 @@
 	
 	The authors stated that these results supported their hypothesis, illustrating that the identity of the perpetrator was an influence in the 2016 referendum as the impact of \texttt{(ln) FARC attacks} and \texttt{(ln) Para/BACRIM Attacks} on the \% yes vote in the referendum appeared to be non-zero and statistically significant. Focusing on the FARC and Paramilitary/BACRIM attacks variables in model 7, these can be interpreted as:
 	
-	\textbf{(ln) FARC Attacks:} Holding all other variables constant, on average, for every one percent increase in the mean number of FARC attacks in a municipality, the percentage of votes per municipality supporting the 2016 peace agreement referendum increases by .01058\%.
+	\textbf{(ln) FARC Attacks:} Holding all other variables constant, on average, for every one percent increase in the mean number of FARC attacks in a municipality, the percentage of votes per municipality supporting the 2016 peace agreement referendum increases by .01058 percentage points.
 	
-	\textbf{(ln) Para/BACRIM Attacks:} Holding all other variables constant, on average, for every one percent increase in the mean number of Para/BACRIM attacks in a municipality, the percentage of votes per municipality supporting the 2016 peace agreement referendum decreases by .01322\%.
+	\textbf{(ln) Para/BACRIM Attacks:} Holding all other variables constant, on average, for every one percent increase in the mean number of Para/BACRIM attacks in a municipality, the percentage of votes per municipality supporting the 2016 peace agreement referendum decreases by .0132 percentage points.
 	
-	The authors also noted that municipalities with higher support for Santos saw a statistically significant higher percentage of votes in favor of the referendum, as well as more rural municipalities and those with higher coca cultivation.
+	The authors also noted that municipalities with higher support for Santos saw a statistically significant increase in the percentage of votes in favor of the referendum, as well as more rural municipalities and those with higher coca cultivation.
 	
-	The authors also generated Figure \ref{fig:lollipop}, which was created by including variables that captured overall exposure to violence within a municipality through \texttt{(ln) exposure total} and \texttt{(ln) exposure total per 1,000 people}. To obtain this figure, each of these was run separately in an OLS regression that included just the control variables listed above, and excluded the \texttt{(ln) FARC attacks} and \texttt{(ln) Para/BACRIM attacks} variables. This code was not supplied within the replication code, but I was able to accurately replicate the figure myself using the code below.
+	The authors also generated Figure \ref{fig:lollipop}, which was created by including variables that captured overall exposure to violence within a municipality through \texttt{(ln) exposure total} and \texttt{(ln) exposure total per 1,000 people}. These variables represent the log of the number of attacks within a municipality not aggregated by the group perpetrating the violence. To obtain this figure, each overall exposure variable was run separately in an OLS regression that included just the control variables listed above, and excluded the \texttt{(ln) FARC attacks} and \texttt{(ln) Para/BACRIM attacks} variables. This code was not supplied within the replication code, but I was able to accurately replicate the figure myself using the code below.
 	
 	\lstinputlisting[language=R, firstline=297, lastline=357]{replication_r_code.R}
 	
@@ -222,11 +225,11 @@
 	
 	My contribution was spurred by the discovery of non-identical intercept values following replication of the regression code. This led to the realization that the authors did not use a consistent reference category for their department fixed effects dummy variable. After discovering this, I realized that some of the department groups contain very few municipalities within them and therefore have an incredibly small group size. These small, unbalanced group sizes do not allow for estimation of within-group variations and resultingly do not produce precise or accurate estimates. Controlling for fixed effects is still important, as there is variation between departments that may impact the results and need to be controlled for.
 	
-	In order to do this accurately, I implemented a multilevel model (MLM) to estimate the regression coefficients. MLM is a method that is an extension of linear regression, but allows for more accurate inferences for grouped data by allowing the intercept, or both the intercept and slopes, to vary. Group and individual level variation is considered within the estimation of the group-level coefficients, allowing for accurate inferences to be made for groups that have small sample sizes, which is highly appropriate in this setting. An important concept in MLM that helps explain how it functions is pooling, which refers to the way in which information is shared across groups in a model. A "no pooling" model is one in which no information is shared between groups and the coefficients are estimated purely based on variation within their group. A full pooling model means that groups are not considered, ignoring differences that might arise from between group variation. An MLM is in between these two pooling extremes, allowing group-level estimates to be a weighted combination of within and between group data. A small group size will then pull more data from the overall larger sample average, rather than from the information within its group, which is necessary for this data (Gelman \& Hill, 2017). 
+	In order to do this accurately, I implemented a multilevel model (MLM) to estimate the regression coefficients. MLM is a method that is an extension of linear regression, but allows for more accurate inferences for grouped data by allowing the intercept, or both the intercept and slope, to vary. Both group and individual level variation is considered within the estimation of the group-level coefficients, allowing for accurate inferences to be made for groups that have small sample sizes, which is highly appropriate in this setting. An important concept in MLM that helps explain how it functions is pooling, which refers to the way in which information is shared across groups in a model. A "no pooling" model is one in which no information is shared between groups and the coefficients are estimated purely based on variation within their group. A full pooling model means that groups are not considered, ignoring differences that might arise from between group variation. An MLM is in between these two pooling extremes, allowing group-level estimates to be a weighted combination of within and between group data. A small group size will then pull more data from the overall larger sample average, rather than from the information within its group, which is necessary to obtain accurate estimates from this data (Gelman \& Hill, 2017). 
 		
 	For this particular instance, there will be two levels, the department level and the municipality level. A varying intercept model is utilized, allowing the intercept to vary for each group, but keeping the slopes the same. 
 	
-	The first thing that I had to do before running the models was to create a new column in the dataframe that held all of the department's identities. 
+	The first step that I had to do prior to running the models was to create a new column in the dataframe that held all of the department's identities. 
 	
 	\lstinputlisting[language=R, firstline=367, lastline=369]{replication_r_code.R} 
 	
@@ -265,17 +268,17 @@
 		\label{tab:multilevel}
 	\end{sidewaystable}
 
-	The resulting coefficients from the multi-level model are similar to those in the original OLS model, indicating accurate representation of the effects of the covariates. The FARC attacks and Para/BACRIM attacks coefficients can be interpreted as follows:
+	The resulting coefficients from the multi-level model are similar to those in the original OLS model, indicating accurate representation of the effects of the covariates through the MLM. The FARC attacks and Para/BACRIM attacks coefficients can be interpreted as follows:
 	
 	\textbf{(ln) FARC Attacks:} Holding all other variables constant, on average, for every one percent increase in the mean number of FARC attacks in a municipality, the percentage of votes per municipality supporting the 2016 peace agreement referendum increases by .0103\%.
 
 	\textbf{(ln) Para/BACRIM Attacks:} Holding all other variables constant, on average, for every one percent increase in the mean number of Para/BACRIM attacks in a municipality, the percentage of votes per municipality supporting the 2016 peace agreement referendum decreases by .0134\%.
 	
-	The intercept for this model can now be more accurately interpreted. The first part of its interpretation is held in the (Intercept) estimate, whereas the second part can be found  through running the coef() function in R on the model. This output of this function tells you the intercept for each department.
+	The intercept for this model can now be more accurately interpreted. The first part of its interpretation is held in the (Intercept) estimate, whereas the second part can be found  through running the coef() function in R on the model. The output of this function tells you the intercept for each department.
 	
 	\textbf{(Intercept):} The average expected value of the percentage of votes per municipality supporting the 2016 peace agreement referendum, across all departments when all covariates are 0 is 20.16\%.
 	
-	\textbf{Intercepts by Department:} In order to display the shifted intercepts, coef() can be called in R. I chose to place it in a dataframe to make it easier to view
+	\textbf{Intercepts by Department:} In order to display the shifted intercepts, coef() can be called in R. I chose to place it in a dataframe to make it easier to view.
 	
 	\lstinputlisting[language=R, firstline=423, lastline=424]{replication_r_code.R}
 	\begin{verbatim}
@@ -317,9 +320,9 @@
 	
 	This interpretation is not entirely accurate, as the log-transformation of the raw FARC and Para/BACRIM attacks counts, and subsequently the interpretation of a 1\% increase in the mean of these attacks would not allow the authors to then directly interpret the coefficients without transforming them as well. Taking the log of the attack counts requires the $Beta$ coefficient value to then be divided by 100, to account for the transformation of x. This would then result in the interpretations being what I reported when presenting the OLS output results. The difference in value when considering and applying this transformation is incredibly large, greatly changing the magnitude of the results.
 	
-	Following this realization, I chose to determine predicted probabilities of \% yes votes in referendum for varying numbers of FARC attacks and para/BACRIM attacks, and subsequently plot these values against the exponentiated (ln) FARC Attacks and (ln) Para/BACRIM Attacks variable values to get the true raw counts.
+	Following this realization, I chose to determine predicted probabilities of \% yes votes in the referendum for varying numbers of FARC attacks and para/BACRIM attacks, and subsequently plot these values against the exponentiated (ln) FARC Attacks and (ln) Para/BACRIM Attacks variable values to get the true raw counts.
 	
-	To do this, I created a new dataframe by repeating the first row of the original dataframe 100 times to create new data to make my prediction from. I added a column for the departments and held this at 0. For the covariates, I held them all at their mean apart from \texttt{ln\_atfarc\_cede} and \texttt{ln\_atfarc\_cede}, for which I used a variation of numbers between the min and max values. Following this, I created my predictions and calculated confidence intervals before plotting the results against the true FARC and para/BACRIM attack counts.
+	To do this, I created a new dataframe by repeating the first row of the original dataframe 100 times to create new data to make my prediction from. I added a column for the departments and held this at 0. For the covariates, I held them all at their mean apart from \texttt{ln\_atfarc\_cede} and \texttt{ln\_atparabacrim\_cede}, for which I used a varying sample of 100 numbers between the min and max values. Following this, I generated my predictions and calculated confidence intervals before plotting the results against the true FARC and para/BACRIM attack counts.
 	
 	\vspace{0.2cm}
 	
