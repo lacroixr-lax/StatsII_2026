@@ -1,0 +1,183 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{booktabs}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+\title{Problem Set 4}
+\date{Due: April 10, 2026}
+\author{Applied Stats II}
+
+
+\begin{document}
+	\maketitle
+	\section*{Instructions}
+	\begin{itemize}
+	\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
+	\item Your homework should be submitted electronically on GitHub in \texttt{.pdf} form.
+	\item This problem set is due before 23:59 on Friday April 10, 2026. No late assignments will be accepted.
+
+	\end{itemize}
+
+	\vspace{.25cm}
+\section*{Question 1}
+\vspace{.25cm}
+\noindent We're interested in modeling the historical causes of child mortality. We have data from 26855 children born in Skellefteå, Sweden from 1850 to 1884. Using the "child" dataset in the \texttt{eha} library, fit a Cox Proportional Hazard model using mother's age and infant's gender as covariates. Present and interpret the output.
+
+	\vspace{0.5cm}
+
+	\noindent\textbf{My Answer:}
+
+	I first loaded the data and created a survival object using the start time (birth), end time (death), and whether the event of death occurred within the timeframe of the study. Following these preprocessing steps, I fit the Cox Proportional Hazard model with the covariates \texttt{m.age} (mother's age) and \texttt{sex} (gender of child).
+	\lstinputlisting[language=R, firstline=39, lastline=49]{PS04_RL.R}
+	
+	\begin{table}[!htbp] \centering 
+		\caption{Cox Proportional Hazard Model} 
+		\label{} 
+		\begin{tabular}{@{\extracolsep{5pt}}lc} 
+			\\[-1.8ex]\hline 
+			\hline \\[-1.8ex] 
+			& \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+			\cline{2-2} 
+			\\[-1.8ex] & Child Survival \\ 
+			\hline \\[-1.8ex] 
+			Mother's Age & 0.008$^{***}$ \\ 
+			& (0.002) \\ 
+			& \\ 
+			Infant's Gender (1 = Female) & $-$0.082$^{***}$ \\ 
+			& (0.027) \\ 
+			& \\ 
+			\hline \\[-1.8ex] 
+			Observations & 26,574 \\ 
+			R$^{2}$ & 0.001 \\ 
+			Max. Possible R$^{2}$ & 0.986 \\ 
+			Log Likelihood & $-$56,503.480 \\ 
+			Wald Test & 22.520$^{***}$ (df = 2) \\ 
+			LR Test & 22.518$^{***}$ (df = 2) \\ 
+			Score (Logrank) Test & 22.530$^{***}$ (df = 2) \\ 
+			\hline 
+			\hline \\[-1.8ex] 
+			\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+		\end{tabular} 
+	\end{table} 
+	
+	Following implementation of the model, it can be said that on average, for every 1 unit increase in the mother's age there is a 0.008 increase in the expected log of the hazard for babies, holding infant's gender constant. In the context of gender of the baby, on average, there is a 0.082 decrease in the expected log of the hazard for female babies compared to male babies, holding the age of the mother constant. 
+	
+	These results indicate that as a mother's age increased, the likelihood of a child's death occurring throughout the time of the study was more likely, as well as that female babies had a higher likelihood of surviving throughout the study. 
+
+\section*{Question 2}
+\vspace{.25cm}
+\noindent We want to estimate how the amount of damage caused by a disaster relates to (1) whether disaster relief is provided and (2) the amount of relief that is provided  conditional on a donation occurring when a disaster hits a given country. Estimate a Heckman selection model using the \texttt{disasters\_response} data on \href{https://raw.githubusercontent.com/ASDS-TCD/StatsII_2026/refs/heads/main/datasets/disaster_response.csv}{GitHub} in which \texttt{binContribution} is the outcome for the selection equation, and \texttt{originalContributionMillionUSDLogged} is the outcome for the second equation. Use \texttt{occurrences  + deathsEM + normalizedDamageEMLogged} as your input variables for both equations. Present and interpret the output.
+
+	\vspace{0.5cm}
+
+	\noindent\textbf{My Answer:}
+	
+	I began by loading the data and ran the Heckman selection model using \texttt{binContribution} as the outcome for the selection equation, measuring whether disaster relief is provided and \texttt{originalContributionMillionUSDLogged} as the outcome for the second equation, measuring the amount of relief provided conditional on a donation occurring whena  disaster hits a given country.
+	
+	By using the second equation, the way that an original donation given to the country following a disaster is considered in whether or not they receive subsequent disaster relief. The values from the second equation will help to indicate whether or not selection bias was present in the data generating process and OLS model.
+
+	\lstinputlisting[language=R, firstline=59, lastline=70]{PS04_RL.R}
+	
+	\begin{table}
+		\begin{center}
+			\begin{tabular}{l c}
+				\hline
+				& Coefficients \\
+				\hline
+				S: (Intercept)              & $-1.30^{***}$ \\
+				& $(0.02)$      \\
+				S: occurrences              & $0.02^{***}$  \\
+				& $(0.00)$      \\
+				S: deathsEM                 & $0.01^{***}$  \\
+				& $(0.00)$      \\
+				S: normalizedDamageEMLogged & $0.02^{***}$  \\
+				& $(0.00)$      \\
+				O: (Intercept)              & $9.77$        \\
+				& $(6.04)$      \\
+				O: occurrences              & $-0.09$       \\
+				& $(0.05)$      \\
+				O: deathsEM                 & $-0.03$       \\
+				& $(0.03)$      \\
+				O: normalizedDamageEMLogged & $-0.11$       \\
+				& $(0.06)$      \\
+				invMillsRatio               & $-6.31$       \\
+				& $(3.42)$      \\
+				sigma                       & $5.99$        \\
+				& $$            \\
+				rho                         & $-1.05$       \\
+				& $$            \\
+				\hline
+				R$^2$                       & $0.05$        \\
+				Adj. R$^2$                  & $0.05$        \\
+				Num. obs.                   & $49096$       \\
+				Censored                    & $45848$       \\
+				Observed                    & $3248$        \\
+				\hline
+				\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+			\end{tabular}
+			\caption{Heckman Selection Model}
+			\label{tab:heck}
+		\end{center}
+	\end{table}
+	
+	From the output Table \ref{tab:heck}, it can be seen that the \texttt{invMillsRatio} value is not statistically significant. This value is also known as the $lambda$ value and is used to determine if selection bias was present in the data generating process, and subsequently within the model. If $lambda$ is statistically significant, there is selection bias present, but as it is not in this model, it does not appear that selection bias was present. This means that the selection model, which is also the original OLS model is sufficient to model this data. It can also be seen that none of the covariates from the outcome equation are statistically significant, yet they are all statistically significant in the selection model. This indicates that in the outcome model there is not significant variation in the distribution 
+
+\end{document}

@@ -434,11 +434,11 @@ texreg(list(multi_model_1, multi_model_2, multi_model_3, multi_model_4,
 ## Predicted probabilities
 
 # histogram
-hist(df$exp_atfarc_cede, breaks = 100,
+hist(exp(df$ln_atfarc_cede), breaks = 100,
      xlab = "FARC Attacks", main = "Frequency of FARC Attacks",
      col = "purple")
 
-mean(df$exp_atfarc_cede, na.rm = TRUE)
+mean(exp(df$ln_atfarc_cede), na.rm = TRUE)
 
 hist(exp(df$ln_atparabacrim_cede), breaks = 100,
      xlab = "Para/BACRIM Attacks", main = "Frequency of Para/BACRIM Attacks",
@@ -488,7 +488,7 @@ pdf("pred_plot.pdf")
 pred_plot <- ggplot(prediction_data_farc, aes(x = exp(ln_atfarc_cede), y = predicted)) +
   geom_ribbon(aes(ymin=lower_95, ymax=upper_95), alpha = 0.2) +
   geom_point() +
-  geom_rug(data = df, aes(x=exp_atfarc_cede),
+  geom_rug(data = df, aes(x=exp(ln_atfarc_cede)),
            inherit.aes = FALSE, alpha = 0.4, sides = "b") +
   labs(y = "Predicted % Yes Votes in Referendum",
        x = "FARC Attacks",
